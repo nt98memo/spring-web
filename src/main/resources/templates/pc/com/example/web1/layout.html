@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8" />
+<title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE - " th:text="#{app.title}"></title>
+<link rel="icon" th:href="${@environment.getProperty('static.url.root')}+'/favicon.ico'">
+<link th:href="${@environment.getProperty('static.url.root')}+'/pc/css/app.css'" rel="stylesheet" type="text/css" />
+<script type="text/javascript" th:src="${@environment.getProperty('static.url.root')}+'/pc/js/app.js'"></script>
+<script type="text/javascript" th:inline="javascript">
+    const CONTEXT_ROOT = [[@{/}]];
+    const STATIC_URL_ROOT = [[${@environment.getProperty('static.url.root') + '/'}]];
+    const CONFIRM_INSERT = [[#{app.confirm.insert}]];
+    const CONFIRM_UPDATE = [[#{app.confirm.update}]];
+    const CONFIRM_DELETE = [[#{app.confirm.delete}]];
+</script>
+</head>
+<body class="body">
+  <div th:replace="templates/pc/com/example/web1/head :: fragment"></div>
+  <div layout:fragment="content"></div>
+  <div th:replace="templates/pc/com/example/web1/foot :: fragment"></div>
+</body>
+</html>

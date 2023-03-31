@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="templates/mb/com/example/web1/layout">
+<head>
+<meta charset="UTF-8" />
+<title th:text="#{table.sample}"></title>
+<link th:href="${@environment.getProperty('static.url.root')}+'/mb/css/sample/index.css'" rel="stylesheet" type="text/css" />
+<script type="text/javascript" th:src="${@environment.getProperty('static.url.root')}+'/mb/js/sample/index.js'"></script>
+</head>
+<body>
+    <div layout:fragment="content">
+        <div class="content">
+            <div>
+                sample
+            </div>
+            <div>
+                <form class="search-form" id="searchForm" th:action="@{/html/sample/find}" th:object="${form}" method="post" th:enctype="'multipart/form-data'">
+                    <table class="input-table" id="inputTable">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="input-area"><span class="caption" th:text="#{table.sample.col.intCol}"></span></div>
+                                    <div class="input-area"><span class="caption" th:text="#{app.caption.from}"></span><input class="input-text" type="text" th:field="*{intCol.from}" ></div>
+                                    <div class="input-error" th:id="intColFrom" th:if="${#fields.hasErrors('intCol.from')}" th:errors="*{intCol.from}"></div>
+                                    <div class="input-error" th:id="intColFrom" th:if="${not #fields.hasErrors('intCol.from')}"></div>
+                                    <div class="input-area"><span class="caption" th:text="#{app.caption.to}"></span><input class="input-text" type="text" th:field="*{intCol.to}" ></div>
+                                    <div class="input-error" th:id="intColTo" th:if="${#fields.hasErrors('intCol.to')}" th:errors="*{intCol.to}"></div>
+                                    <div class="input-error" th:id="intColTo" th:if="${not #fields.hasErrors('intCol.to')}"></div>
+                                </td>
+                                <td>
+                                    <div class="input-area"><span class="caption" th:text="#{table.sample.col.longCol}"></span></div>
+                                    <div class="input-area"><span class="caption" th:text="#{app.caption.from}"></span><input class="input-text" type="text" th:field="*{longCol.from}" ></div>
+                                    <div class="input-error" th:id="longColFrom" th:if="${#fields.hasErrors('longCol.from')}" th:errors="*{longCol.from}"></div>
+                                    <div class="input-error" th:id="longColFrom" th:if="${not #fields.hasErrors('longCol.from')}"></div>
+                                    <div class="input-area"><span class="caption" th:text="#{app.caption.to}"></span><input class="input-text" type="text" th:field="*{longCol.to}" ></div>
+                                    <div class="input-error" th:id="longColTo" th:if="${#fields.hasErrors('longCol.to')}" th:errors="*{longCol.to}"></div>
+                                    <div class="input-error" th:id="longColTo" th:if="${not #fields.hasErrors('longCol.to')}"></div>
+                                </td>
+                                <td>
+                                    <div class="input-area"><span class="caption" th:text="#{table.sample.col.decimalCol}"></span></div>
+                                    <div class="input-area"><span class="caption" th:text="#{app.caption.from}"></span><input class="input-text" type="text" th:field="*{decimalCol.from}" ></div>
+                                    <div class="input-error" th:id="decimalColFrom" th:if="${#fields.hasErrors('decimalCol.from')}" th:errors="*{decimalCol.from}"></div>
+                                    <div class="input-error" th:id="decimalColFrom" th:if="${not #fields.hasErrors('decimalCol.from')}"></div>
+                                    <div class="input-area"><span class="caption" th:text="#{app.caption.to}"></span><input class="input-text" type="text" th:field="*{decimalCol.to}" ></div>
+                                    <div class="input-error" th:id="decimalColTo" th:if="${#fields.hasErrors('decimalCol.to')}" th:errors="*{decimalCol.to}"></div>
+                                    <div class="input-error" th:id="decimalColTo" th:if="${not #fields.hasErrors('decimalCol.to')}"></div>
+                                </td>
+                                <td>
+                                    <div class="input-area"><span class="caption" th:text="#{table.sample.col.textCol}"></span><input class="input-text" type="text" th:field="*{textCol}" ></div>
+                                    <div class="input-error" th:id="textCol" th:if="${#fields.hasErrors('textCol')}" th:errors="*{textCol}"></div>
+                                    <div class="input-error" th:id="textCol" th:if="${not #fields.hasErrors('textCol')}"></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="input-area"><span class="caption" th:text="#{table.sample.col.textareaCol}"></span><textarea class="input-textarea" th:field="*{textareaCol}" ></textarea></div>
+                                    <div class="input-error" th:id="textCol" th:if="${#fields.hasErrors('textareaCol')}" th:errors="*{textareaCol}"></div>
+                                    <div class="input-error" th:id="textCol" th:if="${not #fields.hasErrors('textareaCol')}"></div>
+                                </td>
+                                <td>
+                                    <div class="input-area"><span class="caption" th:text="#{table.sample.col.dateCol}"></span></div>
+                                    <div class="input-area"><span class="caption" th:text="#{app.caption.from}"></span><input class="input-text" type="date" th:field="*{dateCol.from}" ></div>
+                                    <div class="input-error" th:id="dateColFrom" th:if="${#fields.hasErrors('dateCol.from')}" th:errors="*{dateCol.from}"></div>
+                                    <div class="input-error" th:id="dateColFrom" th:if="${not #fields.hasErrors('dateCol.from')}"></div>
+                                    <div class="input-area"><span class="caption" th:text="#{app.caption.to}"></span><input class="input-text" type="date" th:field="*{dateCol.to}" ></div>
+                                    <div class="input-error" th:id="dateColTo" th:if="${#fields.hasErrors('dateCol.to')}" th:errors="*{dateCol.to}"></div>
+                                    <div class="input-error" th:id="dateColTo" th:if="${not #fields.hasErrors('dateCol.to')}"></div>
+                                </td>
+                                <td>
+                                    <div class="input-area"><span class="caption" th:text="#{table.sample.col.timeCol}"></span></div>
+                                    <div class="input-area"><span class="caption" th:text="#{app.caption.from}"></span><input class="input-text" type="time" th:field="*{timeCol.from}" ></div>
+                                    <div class="input-error" th:id="timeColFrom" th:if="${#fields.hasErrors('timeCol.from')}" th:errors="*{timeCol.from}"></div>
+                                    <div class="input-error" th:id="timeColFrom" th:if="${not #fields.hasErrors('timeCol.from')}"></div>
+                                    <div class="input-area"><span class="caption" th:text="#{app.caption.to}"></span><input class="input-text" type="time" th:field="*{timeCol.to}" ></div>
+                                    <div class="input-error" th:id="timeColTo" th:if="${#fields.hasErrors('timeCol.to')}" th:errors="*{timeCol.to}"></div>
+                                    <div class="input-error" th:id="timeColTo" th:if="${not #fields.hasErrors('timeCol.to')}"></div>
+                                </td>
+                                <td>
+                                    <div class="input-area"><span class="caption" th:text="#{table.sample.col.datetimeCol}"></span></div>
+                                    <div class="input-area"><span class="caption" th:text="#{app.caption.from}"></span><input class="input-text" type="datetime-local" th:field="*{datetimeCol.from}" ></div>
+                                    <div class="input-error" th:id="datetimeColFrom" th:if="${#fields.hasErrors('datetimeCol.from')}" th:errors="*{datetimeCol.from}"></div>
+                                    <div class="input-error" th:id="datetimeColFrom" th:if="${not #fields.hasErrors('datetimeCol.from')}"></div>
+                                    <div class="input-area"><span class="caption" th:text="#{app.caption.to}"></span><input class="input-text" type="datetime-local" th:field="*{datetimeCol.to}" ></div>
+                                    <div class="input-error" th:id="datetimeColTo" th:if="${#fields.hasErrors('datetimeCol.to')}" th:errors="*{datetimeCol.to}"></div>
+                                    <div class="input-error" th:id="datetimeColTo" th:if="${not #fields.hasErrors('datetimeCol.to')}"></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <th:block th:each="i : ${#numbers.sequence(0,1,1)}">
+	                                    <div class="input-area">
+	                                        <span class="caption" th:text="#{table.sample.col.radioCol}"></span>
+		                                    <th:block th:each="flg,flgStat : ${flgList}">
+		                                        <input class="input-radio" type="radio" th:field="*{radioCol[__${i}__]}" th:value="${flg.ordinal()}" />
+		                                        <label th:text="#{${flg.msgCode()}}"></label>
+		                                    </th:block>
+	                                    </div>
+	                                    <div class="input-error" th:id="radioCol" th:if="${#fields.hasErrors('radioCol[__${i}__]')}" th:errors="*{radioCol[__${i}__]}"></div>
+	                                    <div class="input-error" th:id="radioCol" th:if="${not #fields.hasErrors('radioCol[__${i}__]')}"></div>
+	                                </th:block>
+                                </td>
+                                <td>
+                                    <th:block th:each="i : ${#numbers.sequence(0,1,1)}">
+	                                    <div class="input-area">
+	                                        <span class="caption" th:text="#{table.sample.col.selectCol}"></span>
+	                                        <select class="input-select" th:field="*{selectCol[__${i}__]}" >
+	                                            <option class="input-option" value=""></option>
+	                                            <option class="input-option" th:each="flg,flgStat : ${flgList}" th:value="${flg.ordinal()}" th:text="#{${flg.msgCode()}}"></option>
+	                                        </select>
+	                                    </div>
+	                                    <div class="input-error" th:id="selectCol" th:if="${#fields.hasErrors('selectCol[__${i}__]')}" th:errors="*{selectCol[__${i}__]}"></div>
+	                                    <div class="input-error" th:id="selectCol" th:if="${not #fields.hasErrors('selectCol[__${i}__]')}"></div>
+                                    </th:block>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="input-area"><span class="caption" >offset</span><input class="input-text" type="text" th:field="*{offset}" ></div>
+                                    <div class="input-error" th:id="'offset'"></div>
+                                </td>
+                                <td>
+                                    <div class="input-area"><span class="caption" >limit</span><input class="input-text" type="text" th:field="*{limit}" ></div>
+                                    <div class="input-error" th:id="'limit'"></div>
+                                </td>
+                                <td>
+                                    <th:block th:each="i : ${#numbers.sequence(0,1,1)}">
+	                                    <div class="input-area"><span class="caption" >orderBy</span>
+	                                        <input class="input-text" type="text" th:field="*{orderBy[__${i}__].column}" >←intColとか、longColとか
+		                                    <select class="input-select" th:field="*{orderBy[__${i}__].order}" >
+		                                        <option class="input-option" th:each="order,orderStat : ${orderList}" th:value="${order.ordinal()}" th:text="#{${order.msgCode()}}"></option>
+		                                    </select>
+	                                    </div>
+                                        <div class="input-error" th:id="selectCol" th:if="${#fields.hasErrors('orderBy[__${i}__]')}" th:errors="*{orderBy[__${i}__]}"></div>
+                                        <div class="input-error" th:id="selectCol" th:if="${not #fields.hasErrors('orderBy[__${i}__]')}"></div>
+                                    </th:block>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div>
+                        <button class="submit-btn" type="submit" form="searchForm" name="submit" value="submitBtn" th:text="#{app.caption.search}"></button>
+                    </div>
+                </form>
+            </div>
+            <div>
+                <a class="btn-link" th:text="#{app.caption.insert}" th:href="@{/html/sample/create}"></a>
+            </div>
+            <div>
+                <table class="list-table" id="listTable">
+                    <thead>
+                        <tr>
+                            <th>
+                                <span class="caption" th:text="#{table.sample.col.intCol}"></span>
+                            </th>
+                            <th>
+                                <span class="caption" th:text="#{table.sample.col.longCol}"></span>
+                            </th>
+                            <th>
+                                <span class="caption" th:text="#{table.sample.col.decimalCol}"></span>
+                            </th>
+                            <th>
+                                <span class="caption" th:text="#{table.sample.col.textCol}"></span>
+                            </th>
+                            <th>
+                                <span class="caption" th:text="#{table.sample.col.textareaCol}"></span>
+                            </th>
+                            <th>
+                                <span class="caption" th:text="#{table.sample.col.radioCol}"></span>
+                            </th>
+                            <th>
+                                <span class="caption" th:text="#{table.sample.col.selectCol}"></span>
+                            </th>
+                            <th>
+                                <span class="caption" th:text="#{table.sample.col.dateCol}"></span>
+                            </th>
+                            <th>
+                                <span class="caption" th:text="#{table.sample.col.timeCol}"></span>
+                            </th>
+                            <th>
+                                <span class="caption" th:text="#{table.sample.col.datetimeCol}"></span>
+                            </th>
+                            <th>
+                                <span class="caption" th:text="#{table.sampleParent.col.textCol}"></span>
+                            </th>
+                            <th>
+                            </th>
+                            <th>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <th:block th:each="entity,entityStat : ${page.content}">
+	                        <tr>
+	                            <td class="list-int">
+	                                <span th:text="${entity.intCol}" ></span>
+	                            </td>
+	                            <td class="list-long">
+	                                <span th:text="${entity.longCol}" ></span>
+	                            </td>
+	                            <td class="list-decimal">
+	                                <span th:text="${entity.decimalCol}" ></span>
+	                            </td>
+	                            <td class="list-text">
+	                                <span th:text="${entity.textCol}" ></span>
+	                            </td>
+	                            <td class="list-textarea">
+	                                <pre th:text="${entity.textareaCol}" ></pre>
+	                            </td>
+	                            <td class="list-radio">
+                                    <span th:text="#{${T(com.example.common.util.EnumUtil).get(flgClass, entity.radioCol).msgCode()}}" ></span>
+	                            </td>
+                                <td class="list-select">
+                                    <span th:text="#{${T(com.example.common.util.EnumUtil).get(flgClass, entity.selectCol).msgCode()}}" ></span>
+                                </td>
+                                <td class="list-date">
+                                    <span th:text="${entity.dateCol}" ></span>
+                                </td>
+                                <td class="list-time">
+                                    <span th:text="${entity.timeCol}" ></span>
+                                </td>
+                                <td class="list-datetime">
+                                    <span th:text="${entity.datetimeCol}" ></span>
+                                </td>
+                                <td class="list-text">
+                                    <span th:text="${entity.sampleParent.textCol}" ></span>
+                                </td>
+                                <td class="list-text">
+                                    <a class="btn-link" th:text="#{app.caption.update}" th:href="@{'/html/sample/edit/' + ${entity.id}}"></a>
+                                </td>
+                                <td class="list-text">
+                                    <a class="btn-link" th:text="#{app.caption.delete}" th:href="@{'/html/sample/show/' + ${entity.id}}"></a>
+                                </td>
+	                        </tr>
+	                    </th:block>
+                    </tbody>
+                </table>
+                
+            </div>
+        </div>
+    </div>
+</body>
+</html>

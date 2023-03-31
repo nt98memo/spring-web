@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="templates/tab/com/example/web1/layout">
+<head>
+<meta charset="UTF-8" />
+<title th:text="#{table.sample}"></title>
+<link th:href="${@environment.getProperty('static.url.root')}+'/tab/css/index/error.css'" rel="stylesheet" type="text/css" />
+<script type="text/javascript" th:src="${@environment.getProperty('static.url.root')}+'/tab/js/index/error.js'"></script>
+</head>
+<body>
+    <div layout:fragment="content">
+        <div class="content">
+            <div>
+                error
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8" />
+</head>
+<body>
+    <div class="side" th:fragment="fragment">
+        <form id="searchForm" th:action="@{/__${controllerName}__}" th:object="${searchForm}" method="post">
+            <div>
+                <th:block th:each="metaRow,metaRowStat : ${metaData.getTableColumnList('search')}">
+                    <div class="item-div">
+                        <div class="title-div" th:text="#{${metaRow.getMsgCode()}}"></div>
+                        <th:block th:switch="${metaRow.html}">
+                            <th:block th:case="'input'">
+                                <div class="input-div" th:switch="${metaRow.searchType}">
+                                    <th:block th:case="'range'">
+                                        <div><span class="fromto-caption" th:text="#{app.caption.from}"></span><input class="fromto-input" type="text" th:field="*{__${metaRow.colFieldName}__.from}"></div>
+                                        <div><span class="fromto-caption" th:text="#{app.caption.to}"></span><input class="fromto-input" type="text" th:field="*{__${metaRow.colFieldName}__.to}"></div>
+                                    </th:block>
+                                    <span th:case="*">
+                                        <input type="text" th:field="*{__${metaRow.colFieldName}__}">
+                                    </span>
+                                </div>
+                            </th:block>
+                            <th:block th:case="'password'">
+                                <div class="input-div" th:switch="${metaRow.searchType}">
+                                    <span th:case="'range'">
+                                        <span th:text="#{app.caption.from}"></span><input type="password" th:field="*{__${metaRow.colFieldName}__.from}">
+                                        <span th:text="#{app.caption.to}"></span><input type="password" th:field="*{__${metaRow.colFieldName}__.to}">
+                                    </span>
+                                    <span th:case="*">
+                                        <input type="password" th:field="*{__${metaRow.colFieldName}__}">
+                                    </span>
+                                </div>
+                            </th:block>
+                            <th:block th:case="'select'">
+                                <div class="input-div" th:switch="${metaRow.searchType}">
+                                    <span th:case="'range'">
+                                        <span th:text="#{app.caption.from}"></span>
+                                        <select class="selectlist" th:field="*{__${metaRow.colFieldName}__.from}" multiple="multiple" th:size="${metaRow.enumValues.length} gt 5 ? '5' : ${metaRow.enumValues.length}">
+                                            <option th:each="metaEnum : ${metaRow.enumValues}" th:value="${metaEnum.value()}" th:text="#{${metaEnum.msgCode()}}"></option>
+                                        </select>
+                                        <span th:text="#{app.caption.to}"></span>
+                                        <select class="selectlist" th:field="*{__${metaRow.colFieldName}__.to}" multiple="multiple" th:size="${metaRow.enumValues.length} gt 5 ? '5' : ${metaRow.enumValues.length}">
+                                            <option th:each="metaEnum : ${metaRow.enumValues}" th:value="${metaEnum.value()}" th:text="#{${metaEnum.msgCode()}}"></option>
+                                        </select>
+                                    </span>
+                                    <span th:case="*">
+                                        <select class="selectlist" th:field="*{__${metaRow.colFieldName}__}" multiple="multiple" th:size="${metaRow.enumValues.length} gt 5 ? '5' : ${metaRow.enumValues.length}">
+                                            <option th:each="metaEnum : ${metaRow.enumValues}" th:value="${metaEnum.value()}" th:text="#{${metaEnum.msgCode()}}"></option>
+                                        </select>
+                                    </span>
+                                </div>
+                            </th:block>
+                            <th:block th:case="'radio'">
+                                <div class="input-div" th:switch="${metaRow.searchType}">
+                                    <span th:case="'range'">
+                                        <th:block th:each="metaEnum : ${metaRow.enumValues}">
+                                            <span th:text="#{app.caption.from}"></span>
+                                            <input type="checkbox" th:field="*{__${metaRow.colFieldName}__.from}" th:value="${metaEnum.value()}" />
+                                            <label th:for="${#ids.prev('__${metaRow.colFieldName}__.from')}" th:text="#{${metaEnum.msgCode()}}"></label>
+                                            <br>
+                                            <span th:text="#{app.caption.to}"></span>
+                                            <input type="checkbox" th:field="*{__${metaRow.colFieldName}__.to}" th:value="${metaEnum.value()}" />
+                                            <label th:for="${#ids.prev('__${metaRow.colFieldName}__.to')}" th:text="#{${metaEnum.msgCode()}}"></label>
+                                            <br>
+                                        </th:block>
+                                    </span>
+                                    <span th:case="*">
+                                        <th:block th:each="metaEnum : ${metaRow.enumValues}">
+                                            <input type="checkbox" th:field="*{__${metaRow.colFieldName}__}" th:value="${metaEnum.value()}" />
+                                            <label th:for="${#ids.prev('__${metaRow.colFieldName}__')}" th:text="#{${metaEnum.msgCode()}}"></label>
+                                            <br>
+                                        </th:block>
+                                    </span>
+                                </div>
+                            </th:block>
+                        </th:block>
+                    </div>
+                </th:block>
+            </div>
+            <div>
+                <button class="submit-btn" type="submit" form="searchForm" name="click_" value="searchBtn" th:text="#{app.caption.search}"></button>
+            </div>
+            <div>
+                <button class="submit-btn" type="submit" form="searchForm" name="click_" value="csvBtn" th:text="#{app.caption.csvdl}"></button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

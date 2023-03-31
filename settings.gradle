@@ -1,0 +1,4 @@
+rootProject.name = 'spring-web1'
+
+includeFlat 'spring-common'
+includeFlat 'spring-web-common'

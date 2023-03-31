@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="templates/mb/com/example/web1/layout">
+<head>
+<meta charset="UTF-8" />
+<title th:text="'create '+#{table.sample}"></title>
+<link th:href="${@environment.getProperty('static.url.root')}+'/mb/css/sample/show.css'" rel="stylesheet" type="text/css" />
+<script type="text/javascript" th:src="${@environment.getProperty('static.url.root')}+'/mb/js/sample/show.js'"></script>
+</head>
+<body>
+    <div layout:fragment="content">
+        <form class="input-form" id="inputForm" th:action="@{/rest/sample/delete}" th:object="${form}" method="post" th:enctype="'multipart/form-data'">
+            <div class="input-global-error" th:id="'input-global-error'"></div>
+            <div class="input-container">
+                <table class="input-table" id="inputTable">
+                    <tbody>
+                        <tr>
+                            <th>
+                                <span class="caption" th:text="#{table.sample.col.intCol}"></span>
+                            </th>
+                            <td>
+                                <input type="hidden" th:field="*{id}" >
+                                <div class="input-area" th:text="${form.intCol}"></div>
+                                <div class="input-error" id="intColError"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <span class="caption" th:text="#{table.sample.col.longCol}"></span>
+                            </th>
+                            <td>
+                                <div class="input-area" th:text="${form.longCol}"></div>
+                                <div class="input-error" id="longColError"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <span class="caption" th:text="#{table.sample.col.decimalCol}"></span>
+                            </th>
+                            <td>
+                                <div class="input-area" th:text="${form.decimalCol}"></div>
+                                <div class="input-error" id="decimalColError"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <span class="caption" th:text="#{table.sample.col.textCol}"></span>
+                            </th>
+                            <td>
+                                <div class="input-area" th:text="${form.textCol}"></div>
+                                <div class="input-error" id="textColError"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <span class="caption" th:text="#{table.sample.col.passwordCol}"></span>
+                            </th>
+                            <td>
+                                <div class="input-area" th:text="${form.passwordCol}"></div>
+                                <div class="input-error" id="passwordColError"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <span class="caption" th:text="#{table.sample.col.textareaCol}"></span>
+                            </th>
+                            <td>
+                                <pre class="input-area" th:text="${form.textareaCol}"></pre>
+                                <div class="input-error" id="textareaColError"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <span class="caption" th:text="#{table.sample.col.radioCol}"></span>
+                            </th>
+                            <td>
+                                <div class="input-area" th:text="#{${T(com.example.common.util.EnumUtil).get(flgClass, form.radioCol).msgCode()}}"></div>
+                                <div class="input-error" id="radioColError"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <span class="caption" th:text="#{table.sample.col.selectCol}"></span>
+                            </th>
+                            <td>
+                                <div class="input-area" th:text="#{${T(com.example.common.util.EnumUtil).get(flgClass, form.selectCol).msgCode()}}"></div>
+                                <div class="input-error" id="selectColError"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <span class="caption" th:text="#{table.sample.col.dateCol}"></span>
+                            </th>
+                            <td>
+                                <div class="input-area" th:text="${form.dateCol}"></div>
+                                <div class="input-error" id="dateColError"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <span class="caption" th:text="#{table.sample.col.timeCol}"></span>
+                            </th>
+                            <td>
+                                <div class="input-area" th:text="${form.timeCol}"></div>
+                                <div class="input-error" id="timeColError"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <span class="caption" th:text="#{table.sample.col.datetimeCol}"></span>
+                            </th>
+                            <td>
+                                <div class="input-area" th:text="${form.datetimeCol}"></div>
+                                <div class="input-error" id="datetimeColError"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <span class="caption" th:text="#{table.sample.col.parentId}"></span>
+                            </th>
+                            <td>
+                                <div class="input-area" th:text="${form.sampleParent.id}"></div>
+                                <div class="input-error" id="sampleParent.idError"></div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div>
+                <button class="submit-btn" type="button" name="submit" value="submitBtn" th:text="#{app.caption.delete}" onclick="remove('sample');"></button>
+            </div>
+            <div>
+                <a class="btn-link" th:text="#{app.caption.back}" th:href="@{/html/sample}"></a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

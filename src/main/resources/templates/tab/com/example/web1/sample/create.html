@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="templates/tab/com/example/web1/layout">
+<head>
+<meta charset="UTF-8" />
+<title th:text="'create '+#{table.sample}"></title>
+<link th:href="${@environment.getProperty('static.url.root')}+'/tab/css/sample/create.css'" rel="stylesheet" type="text/css" />
+<script type="text/javascript" th:src="${@environment.getProperty('static.url.root')}+'/tab/js/sample/create.js'"></script>
+</head>
+<body>
+    <div layout:fragment="content">
+        <form class="input-form" id="inputForm" th:action="@{/rest/sample/insert}" th:object="${form}" method="post" th:enctype="'multipart/form-data'">
+            <div class="input-global-error" th:id="'input-global-error'"></div>
+            <div class="input-container">
+                <table class="input-table" id="inputTable">
+                    <tbody>
+                        <tr>
+                            <th>
+                                <span class="caption" th:text="#{table.sample.col.intCol}"></span>
+                                <span class="required" th:text="#{app.caption.required}"></span>
+                            </th>
+                            <td>
+                                <div class="input-area"><input class="input-text" type="text" th:field="*{intCol}" ></div>
+                                <div class="input-error" id="intColError"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <span class="caption" th:text="#{table.sample.col.longCol}"></span>
+                                <span class="required" th:text="#{app.caption.required}"></span>
+                            </th>
+                            <td>
+                                <div class="input-area"><input class="input-text" type="text" th:field="*{longCol}" ></div>
+                                <div class="input-error" id="longColError"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <span class="caption" th:text="#{table.sample.col.decimalCol}"></span>
+                            </th>
+                            <td>
+                                <div class="input-area"><input class="input-text" type="text" th:field="*{decimalCol}" ></div>
+                                <div class="input-error" id="decimalColError"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <span class="caption" th:text="#{table.sample.col.textCol}"></span>
+                            </th>
+                            <td>
+                                <div class="input-area"><input class="input-text" type="text" th:field="*{textCol}" ></div>
+                                <div class="input-error" id="textColError"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <span class="caption" th:text="#{table.sample.col.passwordCol}"></span>
+                            </th>
+                            <td>
+                                <div class="input-area"><input class="input-text" type="password" th:field="*{passwordCol}" ></div>
+                                <div class="input-error" id="passwordColError"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <span class="caption" th:text="#{table.sample.col.textareaCol}"></span>
+                            </th>
+                            <td>
+                                <div class="input-area"><textarea class="input-textarea" th:field="*{textareaCol}" ></textarea></div>
+                                <div class="input-error" id="textareaColError"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <span class="caption" th:text="#{table.sample.col.radioCol}"></span>
+                                <span class="required" th:text="#{app.caption.required}"></span>
+                            </th>
+                            <td>
+                                <div class="input-area">
+	                                <th:block th:each="flg,flgStat : ${flgList}">
+	                                    <input class="input-radio" type="radio" th:field="*{radioCol}" th:value="${flg.ordinal()}" />
+	                                    <label th:for="${#ids.prev('radioCol')}" th:text="#{${flg.msgCode()}}"></label>
+	                                </th:block>
+                                </div>
+                                <div class="input-error" id="radioColError"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <span class="caption" th:text="#{table.sample.col.selectCol}"></span>
+                            </th>
+                            <td>
+                                <div class="input-area">
+                                    <select class="input-select" th:field="*{selectCol}" >
+                                        <option class="input-option" th:each="flg,flgStat : ${flgList}" th:value="${flg.ordinal()}" th:text="#{${flg.msgCode()}}"></option>
+                                    </select>
+                                </div>
+                                <div class="input-error" id="selectColError"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <span class="caption" th:text="#{table.sample.col.dateCol}"></span>
+                            </th>
+                            <td>
+                                <div class="input-area"><input class="input-date" type="date" th:field="*{dateCol}" ></div>
+                                <div class="input-error" id="dateColError"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <span class="caption" th:text="#{table.sample.col.timeCol}"></span>
+                                <span class="required" th:text="#{app.caption.required}"></span>
+                            </th>
+                            <td>
+                                <div class="input-area"><input class="input-time" type="time" th:field="*{timeCol}" ></div>
+                                <div class="input-error" id="timeColError"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <span class="caption" th:text="#{table.sample.col.datetimeCol}"></span>
+                            </th>
+                            <td>
+                                <div class="input-area"><input class="input-datetime" type="datetime-local" th:field="*{datetimeCol}" ></div>
+                                <div class="input-error" id="datetimeColError"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <span class="caption" th:text="#{table.sample.col.parentId}"></span>
+                                <span class="required" th:text="#{app.caption.required}"></span>
+                            </th>
+                            <td>
+                                <div class="input-area"><input class="input-text" type="text" th:field="*{sampleParent.id}" ></div>
+                                <div class="input-error" id="sampleParent.idError"></div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div>
+                <button class="submit-btn" type="button" name="submit" value="submitBtn" th:text="#{app.caption.insert}" onclick="insert('sample');"></button>
+            </div>
+            <div>
+                <a class="btn-link" th:text="#{app.caption.back}" th:href="@{/html/sample}"></a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
